@@ -1,0 +1,32 @@
+{
+  "name": "apollo-graphql-v3-context-race-condition",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "build:production": "npm run prestart && npm prune --production",
+    "watch": "tsc --w",
+    "prestart": "npm run build && func extensions install",
+    "start:host": "func start",
+    "start": "npm-run-all --parallel start:host watch",
+    "test": "npx jest --watchAll=true",
+    "gen": "graphql-codegen --config codegen.yml",
+    "gen:watch": "graphql-codegen --config codegen.yml --watch  --silent=false",
+    "cloudflared": "cloudflared tunnel --url http://localhost:7071",
+    "nodetest": "glob -c \"node --import tsx --no-warnings --test\" \"./tests/**/*.test.ts\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "apollo-datasource": "^3.3.2",
+    "apollo-server-azure-functions": "^3.13.0",
+    "glob": "^11.0.3"
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.0.0",
+    "@types/node": "^24.3.0",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
